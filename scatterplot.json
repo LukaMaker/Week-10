@@ -1,0 +1,37 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 400,
+    "title": "House Price vs Date sold",
+    "data": {
+        "url": "data/Property_Sales_of_Melbourne_City.csv"
+    },
+    "selection": {
+        "suburb_highlight": {
+            "type": "multi",
+            "fields": ["Suburb"],
+            "bind": "legend"
+        }
+    },
+    "mark": "circle",
+    "encoding": {
+        "x": {
+            "timeUnit": "binnedyearmonth", 
+            "field": "Date",
+            "type": "temporal",
+            "title": "Date Sold"
+        },
+        "y": {
+            "field": "Price",
+            "type": "quantitative"
+        },
+        "color": {
+            "field": "Suburb",
+            "type": "nominal"
+        },
+        "opacity": {
+            "condition": {"selection": "suburb_highlight", "value": 1},
+            "value": 0.005
+        }
+    }
+}
